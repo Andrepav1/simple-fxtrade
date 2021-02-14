@@ -9,7 +9,16 @@ exports.transactions = (req = {}) ->
 
   return @request req, route
 
-# TODO: Consider the idrange, sinceid routes.
+# GET /accounts/:accountId/transactions/idrange
+exports.transactions.idrange = (req = {}) ->
+  {from, to } = req
+  return @request req, "accounts/#{@options.accountId}/transactions/idrange?from=#{from}&to=#{to}"
+
+# GET /accounts/:accountId/transactions/sinceid
+exports.transactions.sinceid = (req = {}) ->
+  {id} = req
+  return @request req, "accounts/#{@options.accountId}/transactions/sinceid?id=#{id}"
+
 
 # GET /accounts/:accountId/transactions/stream
 exports.transactions.stream = (req = {}) ->
