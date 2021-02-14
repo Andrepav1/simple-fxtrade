@@ -36,7 +36,3 @@ jspm_packages
 # Project specific
 .tern-project
 .env
-
-# Build
-dist
-build
