@@ -6,8 +6,18 @@
 
   // GET /instruments/:accountId/candles
   exports.candles = function(req = {}) {
+    var granularity, id, route;
     validate(req, ['id']);
-    return this.request(req, `instruments/${req.id}/candles`, false);
+    ({id, granularity} = req);
+    route = (function() {
+      switch (false) {
+        case granularity == null:
+          return `instruments/${id}/candles?granularity=${granularity}`;
+        default:
+          return `instruments/${id}/candles`;
+      }
+    })();
+    return this.request(req, route, false);
   };
 
 }).call(this);
